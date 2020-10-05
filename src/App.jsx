@@ -24,7 +24,7 @@ let data = {
     "Содержание гумуса, %",
     "pH",
     "Процент физической глины",
-    "Процент песка",
+    "Песок",
   ],
   datasets: [
     {
@@ -34,7 +34,7 @@ let data = {
       borderWidth: 1,
       hoverBackgroundColor: "rgba(255,255,0,0.7)",
       hoverBorderColor: "rgba(255,255,0,1)",
-      data: [0, 0, 0, 0, 0, 0, 0, 0],
+      data: [0.9, 0.5, 0, 0, 0, 0, 0, 0],
       barPercentage: 1.0,
       categoryPercentage: 0.9,
     },
@@ -56,47 +56,116 @@ function App() {
   let chartReference = {};
   chartReference = React.createRef();
   const { register, handleSubmit } = useForm();
+  const [soilType, setSoilType] = useState("");
   const [inputValue, setInputValue] = useState();
   const [dataValue, setDataValue] = useState(data);
   const onSubmit = (value) => {
-    data.datasets[1].data[0] =
-      (parseFloat(value["Остаточная активность БуХЭ, %"]) / buh) * 100;
-    data.datasets[1].data[1] =
-      (parseFloat(value["Остаточное свечение Т, % для Р+Л"]) / rl) * 100;
-    data.datasets[1].data[2] =
-      (parseFloat(value["Остаточное свечение Т, % для Р+Л+ДГ"]) / rlgd) * 100;
-    data.datasets[1].data[3] =
-      (parseFloat(value["Значение абсорбции"]) / optic) * 100;
-    data.datasets[1].data[4] =
-      (parseFloat(value["Содержание гумуса, %"]) / gumus) * 100;
-    data.datasets[1].data[5] = (parseFloat(value["pH"]) / ph) * 100;
-    data.datasets[1].data[6] =
-      (parseFloat(value["Процент физической глины"]) / glina) * 100;
-    let diff1 = Number.parseFloat(data.datasets[1].data[6]) / 100;
-    let diff2 = Number.parseFloat(data.datasets[1].data[4]) / 100;
-    console.log((diff1 + diff2).toString() + "   diff");
+    data.datasets[1].data[0] = (
+      (parseFloat(value["Остаточная активность БуХЭ, %"]) / buh) *
+      100
+    ).toFixed(3);
+    data.datasets[1].data[1] = (
+      (parseFloat(value["Остаточное свечение Т, % для Р+Л"]) / rl) *
+      100
+    ).toFixed(3);
+    data.datasets[1].data[2] = (
+      (parseFloat(value["Остаточное свечение Т, % для Р+Л+ДГ"]) / rlgd) *
+      100
+    ).toFixed(3);
+    data.datasets[1].data[3] = (
+      (parseFloat(value["Значение абсорбции"]) / optic) *
+      100
+    ).toFixed(3);
+    data.datasets[1].data[4] = (
+      (parseFloat(value["Содержание гумуса, %"]) / gumus) *
+      100
+    ).toFixed(3);
+    data.datasets[1].data[5] = ((parseFloat(value["pH"]) / ph) * 100).toFixed(
+      3
+    );
+    data.datasets[1].data[6] = (
+      (parseFloat(value["Процент физической глины"]) / glina) *
+      100
+    ).toFixed(3);
+    data.datasets[1].data[7] = (
+      (parseFloat(value["Песок"]) / pesok) *
+      100
+    ).toFixed(3);
+
+    let diff1 = (Number.parseFloat(data.datasets[1].data[6]) * glina) / 100;
+    let diff2 =
+      (Number.parseFloat(data.datasets[1].data[4]) * gumus) / 100 + 0.001;
+    let diff3 = (Number.parseFloat(data.datasets[1].data[7]) * pesok) / 100;
     let idx = 0;
     let min_diff =
       Math.abs(
-        Number.parseFloat(reference[0]["Содержание гумуса, %"]) / gumus - diff1
+        Number.parseFloat(reference[0]["Процент физической глины"]) - diff2
+      ) *
+      (Math.abs(
+        Number.parseFloat(reference[0]["Содержание гумуса, %"]) - diff1
       ) +
-      Math.abs(
-        Number.parseFloat(reference[0]["Процент физической глины"]) / glina -
-          diff2
-      );
+        Math.abs(Number.parseFloat(reference[0]["Процент песка"]) - diff3));
+    console.log(min_diff);
     reference.forEach((elem, index) => {
-      let tmp1 = Number.parseFloat(
-        Number.parseFloat(elem["Содержание гумуса, %"]) / gumus
-      );
       let tmp2 = Number.parseFloat(
-        Number.parseFloat(elem["Процент физической глины"]) / glina
+        Number.parseFloat(elem["Содержание гумуса, %"])
       );
-      if (min_diff > Math.abs(tmp1 - diff1) + Math.abs(tmp2 - diff2)) {
-        min_diff = Math.abs(tmp1 - diff1) + Math.abs(tmp2 - diff2).toFixed(3);
+      let tmp1 = Number.parseFloat(
+        Number.parseFloat(elem["Процент физической глины"])
+      );
+      let tmp3 = Number.parseFloat(Number.parseFloat(elem["Процент песка"]));
+      console.log(
+        Math.abs(tmp2 - diff2) *
+          (Math.abs(tmp1 - diff1) + Math.abs(tmp3 - diff3)) +
+          elem["Тип почвы"]
+      );
+      if (
+        min_diff >
+        Math.abs(tmp2 - diff2) *
+          (Math.abs(tmp1 - diff1) + Math.abs(tmp3 - diff3))
+      ) {
+        min_diff =
+          Math.abs(tmp2 - diff2) *
+          (Math.abs(tmp1 - diff1) + Math.abs(tmp3 - diff3));
         idx = index;
       }
     });
-    console.log(reference[idx]["Тип почвы"]);
+    console.log(reference[idx]);
+    data.datasets[0].data[0] = (
+      (parseFloat(reference[idx]["Остаточная активность БуХЭ, %"]) / buh) *
+      100
+    ).toFixed(3);
+    console.log(data.datasets[0].data[0]);
+    data.datasets[0].data[1] = (
+      (parseFloat(reference[idx]["Остаточное свечение Т, % для Р+Л"]) / rl) *
+      100
+    ).toFixed(3);
+    data.datasets[0].data[2] = (
+      (parseFloat(reference[idx]["Остаточное свечение Т, % для Р+Л+ДГ"]) /
+        rlgd) *
+      100
+    ).toFixed(3);
+    data.datasets[0].data[3] = (
+      (parseFloat(reference[idx]["Значение абсорбции"]) / optic) *
+      100
+    ).toFixed(3);
+    data.datasets[0].data[4] = (
+      (parseFloat(reference[idx]["Содержание гумуса, %"]) / gumus) *
+      100
+    ).toFixed(3);
+    data.datasets[0].data[5] = (
+      (parseFloat(reference[idx]["pH"]) / ph) *
+      100
+    ).toFixed(3);
+    data.datasets[0].data[6] = (
+      (parseFloat(reference[idx]["Процент физической глины"]) / glina) *
+      100
+    ).toFixed(3);
+    data.datasets[0].data[7] = (
+      (parseFloat(reference[idx]["Процент песка"]) / pesok) *
+      100
+    ).toFixed(3);
+    setSoilType(reference[idx]["Тип почвы"]);
     console.log(idx);
   };
 
@@ -109,8 +178,13 @@ function App() {
         justify="flex-start"
         alignItems="center"
       >
-        <Grid item xs={12} sm={3}>
-          <Form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+        <Grid item xs={12} sm={4}>
+          <Form
+            noValidate
+            autoComplete="off"
+            onSubmit={handleSubmit(onSubmit)}
+            className="gridFormView"
+          >
             <FormGroup>
               <label>Остаточная активность БуХЭ, %</label>
               <input
@@ -182,7 +256,6 @@ function App() {
                 variant="outlined"
                 label="pH"
                 name="pH"
-                value="7.4"
                 ref={register}
               />
             </FormGroup>
@@ -198,11 +271,23 @@ function App() {
                 ref={register}
               />
             </FormGroup>
-
-            <button type="submit" variant="outlined" />
+            <FormGroup>
+              <label>Песок</label>
+              <input
+                type="number"
+                step="0.01"
+                variant="outlined"
+                label="Песок"
+                name="Песок"
+                ref={register}
+              />
+            </FormGroup>
+            <button type="submit" variant="outlined">
+              Считать
+            </button>
           </Form>
         </Grid>
-        <Grid item xs={12} sm={9}>
+        <Grid item xs={12} sm={8}>
           <Bar
             redraw
             data={data}
@@ -234,6 +319,7 @@ function App() {
               },
             }}
           ></Bar>
+          <div>{soilType}</div>
         </Grid>
       </Grid>
     </div>
