@@ -34,7 +34,7 @@ let data = {
       borderWidth: 1,
       hoverBackgroundColor: "rgba(255,255,0,0.7)",
       hoverBorderColor: "rgba(255,255,0,1)",
-      data: [60, 30, 80, 70, 60, 55, 70, 70],
+      data: [0, 0, 0, 0, 0, 0, 0, 0],
       barPercentage: 1.0,
       categoryPercentage: 0.9,
     },
@@ -45,7 +45,7 @@ let data = {
       borderColor: "rgba(0,191,255, 0.3))",
       hoverBackgroundColor: "rgba(0,191,255,0.7)",
       hoverBorderColor: "rgba(0,191,255,1)",
-      data: [40, 59, 80, 81, 90, 90, 59, 90],
+      data: [108.23, 62.1, 52.27, 1.057, 0.47, 7.4, 16.6, 0],
       barPercentage: 1.0,
       categoryPercentage: 0.9,
     },
@@ -72,6 +72,32 @@ function App() {
     data.datasets[1].data[5] = (parseFloat(value["pH"]) / ph) * 100;
     data.datasets[1].data[6] =
       (parseFloat(value["Процент физической глины"]) / glina) * 100;
+    let diff1 = Number.parseFloat(data.datasets[1].data[6]) / 100;
+    let diff2 = Number.parseFloat(data.datasets[1].data[4]) / 100;
+    console.log((diff1 + diff2).toString() + "   diff");
+    let idx = 0;
+    let min_diff =
+      Math.abs(
+        Number.parseFloat(reference[0]["Содержание гумуса, %"]) / gumus - diff1
+      ) +
+      Math.abs(
+        Number.parseFloat(reference[0]["Процент физической глины"]) / glina -
+          diff2
+      );
+    reference.forEach((elem, index) => {
+      let tmp1 = Number.parseFloat(
+        Number.parseFloat(elem["Содержание гумуса, %"]) / gumus
+      );
+      let tmp2 = Number.parseFloat(
+        Number.parseFloat(elem["Процент физической глины"]) / glina
+      );
+      if (min_diff > Math.abs(tmp1 - diff1) + Math.abs(tmp2 - diff2)) {
+        min_diff = Math.abs(tmp1 - diff1) + Math.abs(tmp2 - diff2).toFixed(3);
+        idx = index;
+      }
+    });
+    console.log(reference[idx]["Тип почвы"]);
+    console.log(idx);
   };
 
   return (
@@ -95,7 +121,7 @@ function App() {
                 step="0.001"
                 name="Остаточная активность БуХЭ, %"
                 onChange={handleSubmit}
-                value={register.password}
+                value="108.23"
                 ref={register({ required: true })}
               />
             </FormGroup>
@@ -107,6 +133,7 @@ function App() {
                 variant="outlined"
                 label="Остаточное свечение Т, % для Р+Л"
                 name="Остаточное свечение Т, % для Р+Л"
+                value="62.1"
                 ref={register({ required: true })}
               />
             </FormGroup>
@@ -118,6 +145,7 @@ function App() {
                 variant="outlined"
                 label="Остаточное свечение Т, % для Р+Л+ДГ"
                 name="Остаточное свечение Т, % для Р+Л+ДГ"
+                value="52.27"
                 ref={register}
               />
             </FormGroup>
@@ -130,6 +158,7 @@ function App() {
                 label="Значение абсорбции"
                 name="Значение абсорбции"
                 max="2"
+                value="1.057"
                 ref={register({ required: true })}
               />
             </FormGroup>
@@ -153,6 +182,7 @@ function App() {
                 variant="outlined"
                 label="pH"
                 name="pH"
+                value="7.4"
                 ref={register}
               />
             </FormGroup>
@@ -196,6 +226,8 @@ function App() {
                     stacked: false,
                     ticks: {
                       beginAtZero: true,
+                      suggestedMin: 0,
+                      suggestedMax: 100,
                     },
                   },
                 ],
