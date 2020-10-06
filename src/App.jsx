@@ -92,41 +92,58 @@ function App() {
       100
     ).toFixed(3);
 
-    let diff1 = (Number.parseFloat(data.datasets[1].data[6]) * glina) / 100;
-    let diff2 =
-      (Number.parseFloat(data.datasets[1].data[4]) * gumus) / 100 + 0.001;
-    let diff3 = (Number.parseFloat(data.datasets[1].data[7]) * pesok) / 100;
+    let diff1 = Number.parseFloat(data.datasets[1].data[6]);
+    let diff2 = Number.parseFloat(data.datasets[1].data[4]);
+    let diff3 = Number.parseFloat(data.datasets[1].data[7]);
     let idx = 0;
-    let min_diff =
-      Math.abs(
-        Number.parseFloat(reference[0]["Процент физической глины"]) - diff2
-      ) *
-      (Math.abs(
-        Number.parseFloat(reference[0]["Содержание гумуса, %"]) - diff1
+    let min_diff = Math.sqrt(
+      Math.pow(
+        Math.abs(
+          Number.parseFloat(reference[0]["Процент физической глины"]) - diff1
+        ),
+        2
       ) +
-        Math.abs(Number.parseFloat(reference[0]["Процент песка"]) - diff3));
+        Math.pow(
+          Math.abs(
+            Number.parseFloat(reference[0]["Содержание гумуса, %"]) - diff2
+          ),
+          2
+        ) +
+        Math.pow(
+          Math.abs(Number.parseFloat(reference[0]["Процент песка"]) - diff3),
+          2
+        )
+    );
+
     console.log(min_diff);
     reference.forEach((elem, index) => {
-      let tmp2 = Number.parseFloat(
-        Number.parseFloat(elem["Содержание гумуса, %"])
-      );
       let tmp1 = Number.parseFloat(
         Number.parseFloat(elem["Процент физической глины"])
       );
+      let tmp2 = Number.parseFloat(
+        Number.parseFloat(elem["Содержание гумуса, %"])
+      );
       let tmp3 = Number.parseFloat(Number.parseFloat(elem["Процент песка"]));
       console.log(
-        Math.abs(tmp2 - diff2) *
-          (Math.abs(tmp1 - diff1) + Math.abs(tmp3 - diff3)) +
-          elem["Тип почвы"]
+        Math.sqrt(
+          Math.pow(Math.abs(tmp1 - diff1), 2) +
+            Math.pow(Math.abs(tmp2 - diff2), 2) +
+            Math.pow(Math.abs(tmp3 - diff3), 2)
+        ) + elem["Тип почвы"]
       );
       if (
         min_diff >
-        Math.abs(tmp2 - diff2) *
-          (Math.abs(tmp1 - diff1) + Math.abs(tmp3 - diff3))
+        Math.sqrt(
+          Math.pow(Math.abs(tmp1 - diff1), 2) +
+            Math.pow(Math.abs(tmp2 - diff2), 2) +
+            Math.pow(Math.abs(tmp3 - diff3), 2)
+        )
       ) {
-        min_diff =
-          Math.abs(tmp2 - diff2) *
-          (Math.abs(tmp1 - diff1) + Math.abs(tmp3 - diff3));
+        min_diff = Math.sqrt(
+          Math.pow(Math.abs(tmp1 - diff1), 2) +
+            Math.pow(Math.abs(tmp2 - diff2), 2) +
+            Math.pow(Math.abs(tmp3 - diff3), 2)
+        );
         idx = index;
       }
     });
@@ -319,7 +336,9 @@ function App() {
               },
             }}
           ></Bar>
-          <div>{soilType}</div>
+          <div>
+            <h1>{soilType}</h1>
+          </div>
         </Grid>
       </Grid>
     </div>
