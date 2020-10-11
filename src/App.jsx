@@ -17,14 +17,14 @@ const glina = 100; // glina
 const pesok = 100; // ????pesok
 let data = {
   labels: [
-    "Остаточная активность БуХЭ, %",
-    "Остаточное свечение Т, %",
-    "Остаточное свечение Т, %",
-    "Значение абсорбции",
-    "Содержание гумуса, %",
+    "RА, %",
+    "T2, %",
+    "T3, %",
+    "D250",
+    "Humus, %",
     "pH",
-    "Процент физической глины",
-    "Песок",
+    "Clay content",
+    "Sand content",
   ],
   datasets: [
     {
@@ -61,69 +61,64 @@ function App() {
   const [dataValue, setDataValue] = useState(data);
   const onSubmit = (value) => {
     data.datasets[1].data[0] = (
-      (parseFloat(value["Остаточная активность БуХЭ, %"]) / buh) *
+      (parseFloat(value["RА, %"]) / buh) *
       100
     ).toFixed(3);
     data.datasets[1].data[1] = (
-      (parseFloat(value["Остаточное свечение Т, % для Р+Л"]) / rl) *
+      (parseFloat(value["Т2, %"]) / rl) *
       100
     ).toFixed(3);
     data.datasets[1].data[2] = (
-      (parseFloat(value["Остаточное свечение Т, % для Р+Л+ДГ"]) / rlgd) *
+      (parseFloat(value["Т3, %"]) / rlgd) *
       100
     ).toFixed(3);
     data.datasets[1].data[3] = (
-      (parseFloat(value["Значение абсорбции"]) / optic) *
+      (parseFloat(value["D250"]) / optic) *
       100
     ).toFixed(3);
     data.datasets[1].data[4] = (
-      (parseFloat(value["Содержание гумуса, %"]) / gumus) *
+      (parseFloat(value["Humus, %"]) / gumus) *
       100
     ).toFixed(3);
     data.datasets[1].data[5] = ((parseFloat(value["pH"]) / ph) * 100).toFixed(
       3
     );
     data.datasets[1].data[6] = (
-      (parseFloat(value["Процент физической глины"]) / glina) *
+      (parseFloat(value["Clay content"]) / glina) *
       100
     ).toFixed(3);
     data.datasets[1].data[7] = (
-      (parseFloat(value["Песок"]) / pesok) *
+      (parseFloat(value["Sand content"]) / pesok) *
       100
     ).toFixed(3);
 
-    let diff1 = Number.parseFloat(data.datasets[1].data[6]);
-    let diff2 = Number.parseFloat(data.datasets[1].data[4]);
-    let diff3 = Number.parseFloat(data.datasets[1].data[7]);
+    let diff1 = (Number.parseFloat(data.datasets[1].data[6]) * glina) / 100;
+    let diff2 = (Number.parseFloat(data.datasets[1].data[4]) * gumus) / 100;
+    let diff3 = (Number.parseFloat(data.datasets[1].data[7]) * pesok) / 100;
+    console.log("clay " + diff1);
+    console.log("humus " + diff2);
+    console.log("sand " + diff3);
     let idx = 0;
     let min_diff = Math.sqrt(
       Math.pow(
-        Math.abs(
-          Number.parseFloat(reference[0]["Процент физической глины"]) - diff1
-        ),
+        Math.abs(Number.parseFloat(reference[0]["Clay content"]) - diff1),
         2
       ) +
         Math.pow(
-          Math.abs(
-            Number.parseFloat(reference[0]["Содержание гумуса, %"]) - diff2
-          ),
+          Math.abs(Number.parseFloat(reference[0]["Humus, %"]) - diff2),
           2
         ) +
         Math.pow(
-          Math.abs(Number.parseFloat(reference[0]["Процент песка"]) - diff3),
+          Math.abs(Number.parseFloat(reference[0]["Sand content"]) - diff3),
           2
         )
     );
 
     console.log(min_diff);
     reference.forEach((elem, index) => {
-      let tmp1 = Number.parseFloat(
-        Number.parseFloat(elem["Процент физической глины"])
-      );
-      let tmp2 = Number.parseFloat(
-        Number.parseFloat(elem["Содержание гумуса, %"])
-      );
-      let tmp3 = Number.parseFloat(Number.parseFloat(elem["Процент песка"]));
+      let tmp1 = Number.parseFloat(Number.parseFloat(elem["Clay content"]));
+      let tmp2 = Number.parseFloat(Number.parseFloat(elem["Humus, %"]));
+      let tmp3 = Number.parseFloat(Number.parseFloat(elem["Sand content"]));
       console.log(
         Math.sqrt(
           Math.pow(Math.abs(tmp1 - diff1), 2) +
@@ -149,25 +144,24 @@ function App() {
     });
     console.log(reference[idx]);
     data.datasets[0].data[0] = (
-      (parseFloat(reference[idx]["Остаточная активность БуХЭ, %"]) / buh) *
+      (parseFloat(reference[idx]["RА, %"]) / buh) *
       100
     ).toFixed(3);
     console.log(data.datasets[0].data[0]);
     data.datasets[0].data[1] = (
-      (parseFloat(reference[idx]["Остаточное свечение Т, % для Р+Л"]) / rl) *
+      (parseFloat(reference[idx]["Т2, %"]) / rl) *
       100
     ).toFixed(3);
     data.datasets[0].data[2] = (
-      (parseFloat(reference[idx]["Остаточное свечение Т, % для Р+Л+ДГ"]) /
-        rlgd) *
+      (parseFloat(reference[idx]["Т3, %"]) / rlgd) *
       100
     ).toFixed(3);
     data.datasets[0].data[3] = (
-      (parseFloat(reference[idx]["Значение абсорбции"]) / optic) *
+      (parseFloat(reference[idx]["D250"]) / optic) *
       100
     ).toFixed(3);
     data.datasets[0].data[4] = (
-      (parseFloat(reference[idx]["Содержание гумуса, %"]) / gumus) *
+      (parseFloat(reference[idx]["Humus, %"]) / gumus) *
       100
     ).toFixed(3);
     data.datasets[0].data[5] = (
@@ -175,11 +169,11 @@ function App() {
       100
     ).toFixed(3);
     data.datasets[0].data[6] = (
-      (parseFloat(reference[idx]["Процент физической глины"]) / glina) *
+      (parseFloat(reference[idx]["Clay content"]) / glina) *
       100
     ).toFixed(3);
     data.datasets[0].data[7] = (
-      (parseFloat(reference[idx]["Процент песка"]) / pesok) *
+      (parseFloat(reference[idx]["Sand content"]) / pesok) *
       100
     ).toFixed(3);
     setSoilType(reference[idx]["Тип почвы"]);
@@ -203,64 +197,60 @@ function App() {
             className="gridFormView"
           >
             <FormGroup>
-              <label>Остаточная активность БуХЭ, %</label>
+              <label>RА, %</label>
               <input
-                label="Остаточная активность БуХЭ, %"
+                label="RА, %"
                 variant="outlined"
                 id="mui-theme-provider-outlined-input"
                 type="number"
                 step="0.001"
-                name="Остаточная активность БуХЭ, %"
+                name="RА, %"
                 onChange={handleSubmit}
-                value="108.23"
                 ref={register({ required: true })}
               />
             </FormGroup>
             <FormGroup>
-              <label>Остаточное свечение Т, % для Р+Л</label>
+              <label>Т2, %</label>
               <input
                 type="number"
                 step="0.01"
                 variant="outlined"
-                label="Остаточное свечение Т, % для Р+Л"
-                name="Остаточное свечение Т, % для Р+Л"
-                value="62.1"
+                label="Т2, %"
+                name="Т2, %"
                 ref={register({ required: true })}
               />
             </FormGroup>
             <FormGroup>
-              <label>Остаточное свечение Т, % для Р+Л+Д</label>
+              <label>Т3, %</label>
               <input
                 type="number"
                 step="0.01"
                 variant="outlined"
-                label="Остаточное свечение Т, % для Р+Л+ДГ"
-                name="Остаточное свечение Т, % для Р+Л+ДГ"
-                value="52.27"
+                label="Т3, %"
+                name="Т3, %"
                 ref={register}
               />
             </FormGroup>
             <FormGroup>
-              <label>Значение абсорбции</label>
+              <label>D250</label>
               <input
                 type="number"
                 step="0.01"
                 variant="outlined"
-                label="Значение абсорбции"
-                name="Значение абсорбции"
+                label="D250"
+                name="D250"
                 max="2"
-                value="1.057"
                 ref={register({ required: true })}
               />
             </FormGroup>
             <FormGroup>
-              <label>Содержание гумуса, %</label>
+              <label>Humus, %</label>
               <input
                 type="number"
                 step="0.01"
                 variant="outlined"
-                label="Содержание гумуса, %"
-                name="Содержание гумуса, %"
+                label="Humus, %"
+                name="Humus, %"
                 ref={register}
               />
             </FormGroup>
@@ -278,29 +268,29 @@ function App() {
             </FormGroup>
 
             <FormGroup>
-              <label>Процент физической глины</label>
+              <label>Clay content</label>
               <input
                 type="number"
                 step="0.01"
                 variant="outlined"
-                label="Процент физической глины"
-                name="Процент физической глины"
+                label="Clay content"
+                name="Clay content"
                 ref={register}
               />
             </FormGroup>
             <FormGroup>
-              <label>Песок</label>
+              <label>Sand content</label>
               <input
                 type="number"
                 step="0.01"
                 variant="outlined"
-                label="Песок"
-                name="Песок"
+                label="Sand content"
+                name="Sand content"
                 ref={register}
               />
             </FormGroup>
             <button type="submit" variant="outlined">
-              Считать
+              Find
             </button>
           </Form>
         </Grid>
