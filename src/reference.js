@@ -8,7 +8,7 @@ export const reference = [
     pH: "8",
     "Clay content": "6.7",
     "Sand content": "90.4",
-    "Тип почвы": "песок",
+    "Soil type": "sand",
   },
   {
     "RА, %": "101.0989011",
@@ -19,7 +19,7 @@ export const reference = [
     pH: "7.9",
     "Clay content": "5.9",
     "Sand content": "85.4",
-    "Тип почвы": "песок",
+    "Soil type": "sand",
   },
   {
     "RА, %": "101.0989011",
@@ -30,7 +30,7 @@ export const reference = [
     pH: "8",
     "Clay content": "6.3",
     "Sand content": "88.7",
-    "Тип почвы": "песок",
+    "Soil type": "sand",
   },
   {
     "RА, %": "104.9450549",
@@ -41,7 +41,7 @@ export const reference = [
     pH: "5.3",
     "Clay content": "8.5",
     "Sand content": "81.7",
-    "Тип почвы": "light loam",
+    "Soil type": "light loam",
   },
   {
     "RА, %": "107.1428571",
@@ -52,7 +52,7 @@ export const reference = [
     pH: "5.7",
     "Clay content": "8.9",
     "Sand content": "79.1",
-    "Тип почвы": "легкий_суглинок",
+    "Soil type": "light loam",
   },
   {
     "RА, %": "94.50549451",
@@ -63,7 +63,7 @@ export const reference = [
     pH: "5.2",
     "Clay content": "8.3",
     "Sand content": "77.4",
-    "Тип почвы": "легкий_суглинок",
+    "Soil type": "light loam",
   },
   {
     "RА, %": "106.043956",
@@ -74,7 +74,7 @@ export const reference = [
     pH: "7.3",
     "Clay content": "17.3",
     "Sand content": "57.3",
-    "Тип почвы": "средний_суглинок",
+    "Soil type": "medium loam",
   },
   {
     "RА, %": "109.3406593",
@@ -85,7 +85,7 @@ export const reference = [
     pH: "7.6",
     "Clay content": "15.7",
     "Sand content": "59.4",
-    "Тип почвы": "средний_суглинок",
+    "Soil type": "medium loam",
   },
   {
     "RА, %": "109.3406593",
@@ -96,7 +96,7 @@ export const reference = [
     pH: "7.3",
     "Clay content": "16.8",
     "Sand content": "58.9",
-    "Тип почвы": "средний_суглинок",
+    "Soil type": "medium loam",
   },
   {
     "RА, %": "104.0723982",
@@ -107,7 +107,7 @@ export const reference = [
     pH: "7.5",
     "Clay content": "26.4",
     "Sand content": "28.3",
-    "Тип почвы": "тяжелый_суглинок",
+    "Soil type": "heavy loam",
   },
   {
     "RА, %": "111.3122172",
@@ -118,7 +118,7 @@ export const reference = [
     pH: "7",
     "Clay content": "29.2",
     "Sand content": "29.1",
-    "Тип почвы": "тяжелый_суглинок",
+    "Soil type": "heavy loam",
   },
   {
     "RА, %": "109.5022624",
@@ -129,7 +129,7 @@ export const reference = [
     pH: "7.2",
     "Clay content": "29.2",
     "Sand content": "24.5",
-    "Тип почвы": "тяжелый_суглинок",
+    "Soil type": "heavy loam",
   },
   {
     "RА, %": "109.5022624",
@@ -140,7 +140,7 @@ export const reference = [
     pH: "6.3",
     "Clay content": "21",
     "Sand content": "17.6",
-    "Тип почвы": "чернозем",
+    "Soil type": "high-humus",
   },
   {
     "RА, %": "107.6923077",
@@ -151,7 +151,7 @@ export const reference = [
     pH: "7",
     "Clay content": "20.4",
     "Sand content": "19.1",
-    "Тип почвы": "чернозем",
+    "Soil type": "high-humus",
   },
   {
     "RА, %": "154.7511312",
@@ -162,7 +162,7 @@ export const reference = [
     pH: "6.8",
     "Clay content": "20.9",
     "Sand content": "18.7",
-    "Тип почвы": "чернозем",
+    "Soil type": "high-humus",
   },
   {
     "RА, %": "95.47511312",
@@ -173,7 +173,7 @@ export const reference = [
     pH: "7.8",
     "Clay content": "6.2",
     "Sand content": "84.8",
-    "Тип почвы": "песок_1%",
+    "Soil type": "sand 1%",
   },
   {
     "RА, %": "102.2624434",
@@ -184,7 +184,7 @@ export const reference = [
     pH: "6.9",
     "Clay content": "9.8",
     "Sand content": "84",
-    "Тип почвы": "песок_1%",
+    "Soil type": "sand 1%",
   },
   {
     "RА, %": "95.92760181",
@@ -195,7 +195,7 @@ export const reference = [
     pH: "6.9",
     "Clay content": "7",
     "Sand content": "84.5",
-    "Тип почвы": "песок_1%",
+    "Soil type": "sand 1%",
   },
   {
     "RА, %": "111.9266055",
@@ -206,7 +206,7 @@ export const reference = [
     pH: "6.7",
     "Clay content": "12.8",
     "Sand content": "67.9",
-    "Тип почвы": "песок_3%",
+    "Soil type": "sand 3%",
   },
   {
     "RА, %": "109.1743119",
@@ -217,7 +217,7 @@ export const reference = [
     pH: "6.7",
     "Clay content": "13.1",
     "Sand content": "69.2",
-    "Тип почвы": "песок_3%",
+    "Soil type": "sand 3%",
   },
   {
     "RА, %": "106.4220183",
@@ -228,7 +228,7 @@ export const reference = [
     pH: "6.8",
     "Clay content": "9.7",
     "Sand content": "79.4",
-    "Тип почвы": "песок_3%",
+    "Soil type": "sand 3%",
   },
   {
     "RА, %": "115.5963303",
@@ -239,7 +239,7 @@ export const reference = [
     pH: "6.7",
     "Clay content": "16.9",
     "Sand content": "53.4",
-    "Тип почвы": "песок_5%",
+    "Soil type": "sand 5%",
   },
   {
     "RА, %": "106.4220183",
@@ -250,7 +250,7 @@ export const reference = [
     pH: "6.8",
     "Clay content": "10.8",
     "Sand content": "74.3",
-    "Тип почвы": "песок_5%",
+    "Soil type": "sand 5%",
   },
   {
     "RА, %": "103.6697248",
@@ -261,7 +261,7 @@ export const reference = [
     pH: "6.7",
     "Clay content": "13",
     "Sand content": "68",
-    "Тип почвы": "песок_5%",
+    "Soil type": "sand 5%",
   },
   {
     "RА, %": "110.0917431",
@@ -272,7 +272,7 @@ export const reference = [
     pH: "6.6",
     "Clay content": "8.4",
     "Sand content": "77.3",
-    "Тип почвы": "легкий_суглинок_1%",
+    "Soil type": "light loam 1%",
   },
   {
     "RА, %": "100.9174312",
@@ -283,7 +283,7 @@ export const reference = [
     pH: "6.4",
     "Clay content": "9",
     "Sand content": "77.1",
-    "Тип почвы": "легкий_суглинок_1%",
+    "Soil type": "light loam 1%",
   },
   {
     "RА, %": "105.5045872",
@@ -294,7 +294,7 @@ export const reference = [
     pH: "6.3",
     "Clay content": "9.8",
     "Sand content": "75.6",
-    "Тип почвы": "легкий_суглинок_1%",
+    "Soil type": "light loam 1%",
   },
   {
     "RА, %": "121.6666667",
@@ -305,7 +305,7 @@ export const reference = [
     pH: "7",
     "Clay content": "9.7",
     "Sand content": "70.3",
-    "Тип почвы": "легкий_суглинок_3%",
+    "Soil type": "light loam 3%",
   },
   {
     "RА, %": "122.7777778",
@@ -316,7 +316,7 @@ export const reference = [
     pH: "6.3",
     "Clay content": "14.2",
     "Sand content": "59",
-    "Тип почвы": "легкий_суглинок_3%",
+    "Soil type": "light loam 3%",
   },
   {
     "RА, %": "127.2222222",
@@ -327,7 +327,7 @@ export const reference = [
     pH: "6.2",
     "Clay content": "11.5",
     "Sand content": "70",
-    "Тип почвы": "легкий_суглинок_3%",
+    "Soil type": "light loam 3%",
   },
   {
     "RА, %": "128.8888889",
@@ -338,7 +338,7 @@ export const reference = [
     pH: "6.3",
     "Clay content": "16.1",
     "Sand content": "54.1",
-    "Тип почвы": "легкий_суглинок_5%",
+    "Soil type": "light loam 5%",
   },
   {
     "RА, %": "120.5555556",
@@ -349,7 +349,7 @@ export const reference = [
     pH: "6.3",
     "Clay content": "12.9",
     "Sand content": "58",
-    "Тип почвы": "легкий_суглинок_5%",
+    "Soil type": "light loam 5%",
   },
   {
     "RА, %": "122.7777778",
@@ -360,7 +360,7 @@ export const reference = [
     pH: "6.8",
     "Clay content": "14.1",
     "Sand content": "58.1",
-    "Тип почвы": "легкий_суглинок_5%",
+    "Soil type": "light loam 5%",
   },
   {
     "RА, %": "128.8888889",
@@ -371,7 +371,7 @@ export const reference = [
     pH: "6.3",
     "Clay content": "13.9",
     "Sand content": "60.6",
-    "Тип почвы": "средний_суглинок_1%",
+    "Soil type": "medium loam 1%",
   },
   {
     "RА, %": "127.2222222",
@@ -382,7 +382,7 @@ export const reference = [
     pH: "7.1",
     "Clay content": "16.1",
     "Sand content": "58.4",
-    "Тип почвы": "средний_суглинок_1%",
+    "Soil type": "medium loam 1%",
   },
   {
     "RА, %": "122.2222222",
@@ -393,7 +393,7 @@ export const reference = [
     pH: "6.5",
     "Clay content": "15.1",
     "Sand content": "59",
-    "Тип почвы": "средний_суглинок_1%",
+    "Soil type": "medium loam 1%",
   },
   {
     "RА, %": "111.5789474",
@@ -404,7 +404,7 @@ export const reference = [
     pH: "6.8",
     "Clay content": "16.6",
     "Sand content": "54.1",
-    "Тип почвы": "средний_суглинок_3%",
+    "Soil type": "medium loam 3%",
   },
   {
     "RА, %": "102.1052632",
@@ -415,7 +415,7 @@ export const reference = [
     pH: "6.8",
     "Clay content": "16.2",
     "Sand content": "53",
-    "Тип почвы": "средний_суглинок_3%",
+    "Soil type": "medium loam 3%",
   },
   {
     "RА, %": "102.6315789",
@@ -426,7 +426,7 @@ export const reference = [
     pH: "6.8",
     "Clay content": "16.2",
     "Sand content": "53.6",
-    "Тип почвы": "средний_суглинок_3%",
+    "Soil type": "medium loam 3%",
   },
   {
     "RА, %": "97.36842105",
@@ -437,7 +437,7 @@ export const reference = [
     pH: "7",
     "Clay content": "18.2",
     "Sand content": "48.3",
-    "Тип почвы": "средний_суглинок_5%",
+    "Soil type": "medium loam 5%",
   },
   {
     "RА, %": "96.31578947",
@@ -448,7 +448,7 @@ export const reference = [
     pH: "6.9",
     "Clay content": "17.2",
     "Sand content": "45.8",
-    "Тип почвы": "средний_суглинок_5%",
+    "Soil type": "medium loam 5%",
   },
   {
     "RА, %": "96.84210526",
@@ -459,7 +459,7 @@ export const reference = [
     pH: "6.9",
     "Clay content": "18.7",
     "Sand content": "43.8",
-    "Тип почвы": "средний_суглинок_5%",
+    "Soil type": "medium loam 5%",
   },
   {
     "RА, %": "94.73684211",
@@ -470,7 +470,7 @@ export const reference = [
     pH: "7.1",
     "Clay content": "27.8",
     "Sand content": "26.6",
-    "Тип почвы": "тяжелый_суглинок_1%",
+    "Soil type": "heavy loam 1%",
   },
   {
     "RА, %": "141.2371134",
@@ -481,7 +481,7 @@ export const reference = [
     pH: "7.2",
     "Clay content": "27.1",
     "Sand content": "29.2",
-    "Тип почвы": "тяжелый_суглинок_1%",
+    "Soil type": "heavy loam 1%",
   },
   {
     "RА, %": "115.4639175",
@@ -492,7 +492,7 @@ export const reference = [
     pH: "7.2",
     "Clay content": "28.7",
     "Sand content": "25.7",
-    "Тип почвы": "тяжелый_суглинок_1%",
+    "Soil type": "heavy loam 1%",
   },
   {
     "RА, %": "111.3402062",
@@ -503,7 +503,7 @@ export const reference = [
     pH: "7.2",
     "Clay content": "28.2",
     "Sand content": "25",
-    "Тип почвы": "тяжелый_суглинок_3%",
+    "Soil type": "heavy loam 3%",
   },
   {
     "RА, %": "121.6494845",
@@ -514,7 +514,7 @@ export const reference = [
     pH: "7.2",
     "Clay content": "26.1",
     "Sand content": "24",
-    "Тип почвы": "тяжелый_суглинок_3%",
+    "Soil type": "heavy loam 3%",
   },
   {
     "RА, %": "95.87628866",
@@ -525,7 +525,7 @@ export const reference = [
     pH: "7",
     "Clay content": "23.8",
     "Sand content": "24.4",
-    "Тип почвы": "тяжелый_суглинок_3%",
+    "Soil type": "heavy loam 3%",
   },
   {
     "RА, %": "119.5876289",
@@ -536,7 +536,7 @@ export const reference = [
     pH: "7.2",
     "Clay content": "25",
     "Sand content": "21.6",
-    "Тип почвы": "тяжелый_суглинок_5%",
+    "Soil type": "heavy loam 5%",
   },
   {
     "RА, %": "130.9278351",
@@ -547,7 +547,7 @@ export const reference = [
     pH: "7.1",
     "Clay content": "24.2",
     "Sand content": "23.1",
-    "Тип почвы": "тяжелый_суглинок_5%",
+    "Soil type": "heavy loam 5%",
   },
   {
     "RА, %": "124.742268",
@@ -558,6 +558,6 @@ export const reference = [
     pH: "7.1",
     "Clay content": "26.6",
     "Sand content": "21.5",
-    "Тип почвы": "тяжелый_суглинок_5%",
+    "Soil type": "heavy loam 5%",
   },
 ];

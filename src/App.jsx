@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from "react";
-import logo from "./logo.svg";
+import React, { useState} from "react";
 import "./App.css";
 import { Bar } from "react-chartjs-2";
 import { reference } from "./reference";
-import InputForm from "./InputForm";
 import Grid from "@material-ui/core/Grid";
-import { Form, FormInput, FormGroup } from "shards-react";
+import { Form, FormGroup } from "shards-react";
 import { useForm } from "react-hook-form";
-const buh = 160; // buh
-const rl = 110; // rl
-const rlgd = 100; // rlgd
-const optic = 2; // optic
-const gumus = 10; // gumus
-const ph = 14; // ph
-const glina = 100; // glina
-const pesok = 100; // ????pesok
+const ra = 160; 
+const t2 = 110; 
+const t3 = 100; 
+const d250 = 2; 
+const humus = 10; 
+const ph = 14; 
+const clay = 100; 
+const sand = 100; 
 let data = {
   labels: [
     "RА, %",
@@ -28,76 +26,65 @@ let data = {
   ],
   datasets: [
     {
-      label: "Эталон",
-      backgroundColor: "rgba(255,255,0, 0.5)",
-      borderColor: "rgba(255,255,0, 0.9))",
+      label: "Reference",
+      backgroundColor: "rgba(233,137,126, 0.7)",
       borderWidth: 1,
-      hoverBackgroundColor: "rgba(255,255,0,0.7)",
-      hoverBorderColor: "rgba(255,255,0,1)",
-      data: [0.9, 0.5, 0, 0, 0, 0, 0, 0],
+      hoverBackgroundColor: "rgba(233,137,126,1)",
+      data: [0, 0, 0, 0, 0, 0, 0, 0],
       barPercentage: 1.0,
       categoryPercentage: 0.9,
     },
     {
-      label: "Образец",
+      label: "Sample",
       borderWidth: 1,
-      backgroundColor: "rgba(0,191,255, 0.5)",
-      borderColor: "rgba(0,191,255, 0.3))",
-      hoverBackgroundColor: "rgba(0,191,255,0.7)",
-      hoverBorderColor: "rgba(0,191,255,1)",
-      data: [108.23, 62.1, 52.27, 1.057, 0.47, 7.4, 16.6, 0],
+      backgroundColor: "rgba(48,99,142, 0.7)",
+      hoverBackgroundColor: "rgba(48,99,142,0.9)",
+      data: [0, 0, 0, 0, 0, 0, 0, 0],
       barPercentage: 1.0,
       categoryPercentage: 0.9,
     },
   ],
 };
-
 function App() {
-  let chartReference = {};
-  chartReference = React.createRef();
   const { register, handleSubmit } = useForm();
   const [soilType, setSoilType] = useState("");
-  const [inputValue, setInputValue] = useState();
-  const [dataValue, setDataValue] = useState(data);
+
   const onSubmit = (value) => {
     data.datasets[1].data[0] = (
-      (parseFloat(value["RА, %"]) / buh) *
+      (parseFloat(value["RА, %"]) / ra) *
       100
     ).toFixed(3);
     data.datasets[1].data[1] = (
-      (parseFloat(value["Т2, %"]) / rl) *
+      (parseFloat(value["Т2, %"]) / t2) *
       100
     ).toFixed(3);
     data.datasets[1].data[2] = (
-      (parseFloat(value["Т3, %"]) / rlgd) *
+      (parseFloat(value["Т3, %"]) / t3) *
       100
     ).toFixed(3);
     data.datasets[1].data[3] = (
-      (parseFloat(value["D250"]) / optic) *
+      (parseFloat(value["D250"]) / d250) *
       100
     ).toFixed(3);
     data.datasets[1].data[4] = (
-      (parseFloat(value["Humus, %"]) / gumus) *
+      (parseFloat(value["Humus, %"]) / humus) *
       100
     ).toFixed(3);
     data.datasets[1].data[5] = ((parseFloat(value["pH"]) / ph) * 100).toFixed(
       3
     );
     data.datasets[1].data[6] = (
-      (parseFloat(value["Clay content"]) / glina) *
+      (parseFloat(value["Clay content"]) / clay) *
       100
     ).toFixed(3);
     data.datasets[1].data[7] = (
-      (parseFloat(value["Sand content"]) / pesok) *
+      (parseFloat(value["Sand content"]) / sand) *
       100
     ).toFixed(3);
 
-    let diff1 = (Number.parseFloat(data.datasets[1].data[6]) * glina) / 100;
-    let diff2 = (Number.parseFloat(data.datasets[1].data[4]) * gumus) / 100;
-    let diff3 = (Number.parseFloat(data.datasets[1].data[7]) * pesok) / 100;
-    console.log("clay " + diff1);
-    console.log("humus " + diff2);
-    console.log("sand " + diff3);
+    let diff1 = (Number.parseFloat(data.datasets[1].data[6]) * clay) / 100;
+    let diff2 = (Number.parseFloat(data.datasets[1].data[4]) * humus) / 100;
+    let diff3 = (Number.parseFloat(data.datasets[1].data[7]) * sand) / 100;
     let idx = 0;
     let min_diff = Math.sqrt(
       Math.pow(
@@ -113,55 +100,49 @@ function App() {
           2
         )
     );
-
-    console.log(min_diff);
     reference.forEach((elem, index) => {
-      let tmp1 = Number.parseFloat(Number.parseFloat(elem["Clay content"]));
-      let tmp2 = Number.parseFloat(Number.parseFloat(elem["Humus, %"]));
-      let tmp3 = Number.parseFloat(Number.parseFloat(elem["Sand content"]));
-      console.log(
-        Math.sqrt(
-          Math.pow(Math.abs(tmp1 - diff1), 2) +
-            Math.pow(Math.abs(tmp2 - diff2), 2) +
-            Math.pow(Math.abs(tmp3 - diff3), 2)
-        ) + elem["Тип почвы"]
-      );
+      let clayTemp = Number.parseFloat(Number.parseFloat(elem["Clay content"]));
+      let humusTemp = Number.parseFloat(Number.parseFloat(elem["Humus, %"]));
+      let sandTemp = Number.parseFloat(Number.parseFloat(elem["Sand content"]));
       if (
         min_diff >
         Math.sqrt(
-          Math.pow(Math.abs(tmp1 - diff1), 2) +
-            Math.pow(Math.abs(tmp2 - diff2), 2) +
-            Math.pow(Math.abs(tmp3 - diff3), 2)
+          Math.pow(Math.abs(clayTemp - diff1), 2) +
+            Math.pow(Math.abs(humusTemp - diff2), 2) +
+            Math.pow(Math.abs(sandTemp - diff3), 2)
         )
       ) {
         min_diff = Math.sqrt(
-          Math.pow(Math.abs(tmp1 - diff1), 2) +
-            Math.pow(Math.abs(tmp2 - diff2), 2) +
-            Math.pow(Math.abs(tmp3 - diff3), 2)
+          Math.pow(Math.abs(clayTemp - diff1), 2) +
+            Math.pow(Math.abs(humusTemp - diff2), 2) +
+            Math.pow(Math.abs(sandTemp - diff3), 2)
         );
         idx = index;
       }
     });
-    console.log(reference[idx]);
+    setData(idx);
+  };
+  
+  const setData = (idx) => {
     data.datasets[0].data[0] = (
-      (parseFloat(reference[idx]["RА, %"]) / buh) *
+      (parseFloat(reference[idx]["RА, %"]) / ra) *
       100
     ).toFixed(3);
     console.log(data.datasets[0].data[0]);
     data.datasets[0].data[1] = (
-      (parseFloat(reference[idx]["Т2, %"]) / rl) *
+      (parseFloat(reference[idx]["Т2, %"]) / t2) *
       100
     ).toFixed(3);
     data.datasets[0].data[2] = (
-      (parseFloat(reference[idx]["Т3, %"]) / rlgd) *
+      (parseFloat(reference[idx]["Т3, %"]) / t3) *
       100
     ).toFixed(3);
     data.datasets[0].data[3] = (
-      (parseFloat(reference[idx]["D250"]) / optic) *
+      (parseFloat(reference[idx]["D250"]) / d250) *
       100
     ).toFixed(3);
     data.datasets[0].data[4] = (
-      (parseFloat(reference[idx]["Humus, %"]) / gumus) *
+      (parseFloat(reference[idx]["Humus, %"]) / humus) *
       100
     ).toFixed(3);
     data.datasets[0].data[5] = (
@@ -169,16 +150,15 @@ function App() {
       100
     ).toFixed(3);
     data.datasets[0].data[6] = (
-      (parseFloat(reference[idx]["Clay content"]) / glina) *
+      (parseFloat(reference[idx]["Clay content"]) / clay) *
       100
     ).toFixed(3);
     data.datasets[0].data[7] = (
-      (parseFloat(reference[idx]["Sand content"]) / pesok) *
+      (parseFloat(reference[idx]["Sand content"]) / sand) *
       100
     ).toFixed(3);
-    setSoilType(reference[idx]["Тип почвы"]);
-    console.log(idx);
-  };
+    setSoilType(reference[idx]["Soil type"]);
+}
 
   return (
     <div className="App">
@@ -200,10 +180,8 @@ function App() {
               <label>RА, %</label>
               <input
                 label="RА, %"
-                variant="outlined"
-                id="mui-theme-provider-outlined-input"
                 type="number"
-                step="0.001"
+                step="0.1"
                 name="RА, %"
                 onChange={handleSubmit}
                 ref={register({ required: true })}
@@ -212,8 +190,9 @@ function App() {
             <FormGroup>
               <label>Т2, %</label>
               <input
+                size="lg"
                 type="number"
-                step="0.01"
+                step="0.1"
                 variant="outlined"
                 label="Т2, %"
                 name="Т2, %"
@@ -299,6 +278,11 @@ function App() {
             redraw
             data={data}
             options={{
+              legend: {
+                labels: {
+                  fontSize: 24,
+                }
+              },
               scales: {
                 xAxes: [
                   {
@@ -307,6 +291,9 @@ function App() {
                       lineWidth: 0.5,
                     },
                     stacked: true,
+                    ticks: {
+                      fontSize: 20,
+                    }
                   },
                 ],
                 yAxes: [
@@ -320,10 +307,12 @@ function App() {
                       beginAtZero: true,
                       suggestedMin: 0,
                       suggestedMax: 100,
+                      fontSize:24,
                     },
                   },
                 ],
               },
+              
             }}
           ></Bar>
           <div>
@@ -333,6 +322,8 @@ function App() {
       </Grid>
     </div>
   );
+
+  
 }
 
 export default App;
