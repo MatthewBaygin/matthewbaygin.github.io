@@ -27,9 +27,9 @@ let data = {
   datasets: [
     {
       label: "Reference",
-      backgroundColor: "rgba(233,137,126, 0.7)",
+      backgroundColor: "rgba(233,137,126, 0.5)",
       borderWidth: 1,
-      hoverBackgroundColor: "rgba(233,137,126,1)",
+      hoverBackgroundColor: "rgba(233,137,126,0.7)",
       data: [0, 0, 0, 0, 0, 0, 0, 0],
       barPercentage: 1.0,
       categoryPercentage: 0.9,
@@ -37,7 +37,7 @@ let data = {
     {
       label: "Sample",
       borderWidth: 1,
-      backgroundColor: "rgba(48,99,142, 0.7)",
+      backgroundColor: "rgba(60,121,171, 0.8)",
       hoverBackgroundColor: "rgba(48,99,142,0.9)",
       data: [0, 0, 0, 0, 0, 0, 0, 0],
       barPercentage: 1.0,
