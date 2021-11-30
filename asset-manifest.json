@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/MatthewBaygin/matthewbaygin.github.io/static/css/main.ff9b6f4d.chunk.css",
+    "main.js": "/MatthewBaygin/matthewbaygin.github.io/static/js/main.f98ea638.chunk.js",
+    "main.js.map": "/MatthewBaygin/matthewbaygin.github.io/static/js/main.f98ea638.chunk.js.map",
+    "runtime-main.js": "/MatthewBaygin/matthewbaygin.github.io/static/js/runtime-main.893c2a1b.js",
+    "runtime-main.js.map": "/MatthewBaygin/matthewbaygin.github.io/static/js/runtime-main.893c2a1b.js.map",
+    "static/js/2.7da765be.chunk.js": "/MatthewBaygin/matthewbaygin.github.io/static/js/2.7da765be.chunk.js",
+    "static/js/2.7da765be.chunk.js.map": "/MatthewBaygin/matthewbaygin.github.io/static/js/2.7da765be.chunk.js.map",
+    "index.html": "/MatthewBaygin/matthewbaygin.github.io/index.html",
+    "precache-manifest.31e745bfc1e1a3f6e8def4047a329e70.js": "/MatthewBaygin/matthewbaygin.github.io/precache-manifest.31e745bfc1e1a3f6e8def4047a329e70.js",
+    "service-worker.js": "/MatthewBaygin/matthewbaygin.github.io/service-worker.js",
+    "static/css/main.ff9b6f4d.chunk.css.map": "/MatthewBaygin/matthewbaygin.github.io/static/css/main.ff9b6f4d.chunk.css.map",
+    "static/js/2.7da765be.chunk.js.LICENSE.txt": "/MatthewBaygin/matthewbaygin.github.io/static/js/2.7da765be.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.893c2a1b.js",
+    "static/js/2.7da765be.chunk.js",
+    "static/css/main.ff9b6f4d.chunk.css",
+    "static/js/main.f98ea638.chunk.js"
+  ]
+}
