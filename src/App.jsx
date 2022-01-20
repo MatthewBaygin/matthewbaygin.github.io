@@ -1,18 +1,18 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Bar } from "react-chartjs-2";
 import { reference } from "./reference";
 import Grid from "@material-ui/core/Grid";
 import { Form, FormGroup } from "shards-react";
 import { useForm } from "react-hook-form";
-const ra = 160; 
-const t2 = 110; 
-const t3 = 100; 
-const d250 = 2; 
-const humus = 10; 
-const ph = 14; 
-const clay = 100; 
-const sand = 100; 
+const ra = 160;
+const t2 = 110;
+const t3 = 100;
+const d250 = 2;
+const humus = 10;
+const ph = 14;
+const clay = 100;
+const sand = 100;
 let data = {
   labels: [
     "RА, %",
@@ -84,7 +84,7 @@ function App() {
 
     let diff1 = (Number.parseFloat(data.datasets[1].data[6]) * clay) / 100;
     let diff2 = (Number.parseFloat(data.datasets[1].data[4]) * humus) / 100;
-    let diff3 = (Number.parseFloat(data.datasets[1].data[7]) * sand) / 100;
+    //let diff3 = (Number.parseFloat(data.datasets[1].data[7]) * sand) / 100;
     let idx = 0;
     let min_diff = Math.sqrt(
       Math.pow(
@@ -94,35 +94,36 @@ function App() {
         Math.pow(
           Math.abs(Number.parseFloat(reference[0]["Humus, %"]) - diff2),
           2
-        ) +
-        Math.pow(
-          Math.abs(Number.parseFloat(reference[0]["Sand content"]) - diff3),
-          2
         )
+      // +
+      // Math.pow(
+      //   Math.abs(Number.parseFloat(reference[0]["Sand content"]) - diff3),
+      //   2
+      // )
     );
     reference.forEach((elem, index) => {
       let clayTemp = Number.parseFloat(Number.parseFloat(elem["Clay content"]));
       let humusTemp = Number.parseFloat(Number.parseFloat(elem["Humus, %"]));
-      let sandTemp = Number.parseFloat(Number.parseFloat(elem["Sand content"]));
+      //let sandTemp = Number.parseFloat(Number.parseFloat(elem["Sand content"]));
       if (
         min_diff >
         Math.sqrt(
           Math.pow(Math.abs(clayTemp - diff1), 2) +
-            Math.pow(Math.abs(humusTemp - diff2), 2) +
-            Math.pow(Math.abs(sandTemp - diff3), 2)
+            Math.pow(Math.abs(humusTemp - diff2), 2)
+          //+Math.pow(Math.abs(sandTemp - diff3), 2)
         )
       ) {
         min_diff = Math.sqrt(
           Math.pow(Math.abs(clayTemp - diff1), 2) +
-            Math.pow(Math.abs(humusTemp - diff2), 2) +
-            Math.pow(Math.abs(sandTemp - diff3), 2)
+            Math.pow(Math.abs(humusTemp - diff2), 2)
+          //+Math.pow(Math.abs(sandTemp - diff3), 2)
         );
         idx = index;
       }
     });
     setData(idx);
   };
-  
+
   const setData = (idx) => {
     data.datasets[0].data[0] = (
       (parseFloat(reference[idx]["RА, %"]) / ra) *
@@ -158,7 +159,7 @@ function App() {
       100
     ).toFixed(3);
     setSoilType(reference[idx]["Soil type"]);
-}
+  };
 
   return (
     <div className="App">
@@ -184,7 +185,7 @@ function App() {
                 step="0.1"
                 name="RА, %"
                 onChange={handleSubmit}
-                ref={register({ required: true })}
+                ref={register}
               />
             </FormGroup>
             <FormGroup>
@@ -196,7 +197,7 @@ function App() {
                 variant="outlined"
                 label="Т2, %"
                 name="Т2, %"
-                ref={register({ required: true })}
+                ref={register}
               />
             </FormGroup>
             <FormGroup>
@@ -219,7 +220,7 @@ function App() {
                 label="D250"
                 name="D250"
                 max="2"
-                ref={register({ required: true })}
+                ref={register}
               />
             </FormGroup>
             <FormGroup>
@@ -281,7 +282,7 @@ function App() {
               legend: {
                 labels: {
                   fontSize: 24,
-                }
+                },
               },
               scales: {
                 xAxes: [
@@ -293,7 +294,7 @@ function App() {
                     stacked: true,
                     ticks: {
                       fontSize: 20,
-                    }
+                    },
                   },
                 ],
                 yAxes: [
@@ -307,12 +308,11 @@ function App() {
                       beginAtZero: true,
                       suggestedMin: 0,
                       suggestedMax: 100,
-                      fontSize:24,
+                      fontSize: 24,
                     },
                   },
                 ],
               },
-              
             }}
           ></Bar>
           <div>
@@ -322,8 +322,6 @@ function App() {
       </Grid>
     </div>
   );
-
-  
 }
 
 export default App;
